@@ -24,7 +24,7 @@ public class Jar
 	public boolean applyGuess(int guess)
 	{
 		// Increment guess counter;
-		mGuessAttempts++;
+
 
 		if(guess > mMaxAmount)
 		{
@@ -33,11 +33,13 @@ public class Jar
 
 		if(mRealAmount == guess && validateGuess(guess, mMaxAmount))
 		{
+			mGuessAttempts++;
 			return true;
 		}
 
 		else
 		{
+			mGuessAttempts++;
 			return false;
 		}
 

@@ -11,9 +11,25 @@ public class Game
 		// Create a prompter object to get the data from the user
 		Prompter prompter = new Prompter();
 		// prompt the administrator for the item type
-		prompter.setItemType();
+		try
+		{
+			prompter.setItemType();
+		}
+		catch(IllegalArgumentException e)
+		{
+			e.printStackTrace();
+		}
+
 		// prompt the administrator for the maximum amount
-		prompter.setMaxAmount();
+		try
+		{
+			prompter.setMaxAmount();
+		}
+		catch(NumberFormatException e2)
+		{
+			e2.printStackTrace();
+		}
+
 
 		System.out.println("");
 		System.out.println("****************************");
