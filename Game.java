@@ -1,44 +1,51 @@
-import java.io.Console;
-
 public class Game
 {
  
 	public static void main(String[] args)
 	{
 
-		System.out.println("");
-		System.out.println("****************************");
-		System.out.println("****************************");
-		System.out.println("****************************");
-		System.out.println("|||  LET THE GAME BEGIN  |||");	
-		System.out.println("****************************");
-		System.out.println("****************************");
-		System.out.println("****************************");
-		System.out.println("");
+		System.out.println("Welcome to the guess how many are in the jar game, please enter the following parameters.");
 
-		// Get the item type from the user
-		Console console = System.console();
-		String itemType = console.readLine("Please enter the type of item in the jar: ");
-		int maxItemAmount = Integer.valueOf(console.readLine("Enter the maximum number of " + itemType + " in the jar: "));
+		// Create a prompter object to get the data from the user
+		Prompter prompter = new Prompter();
+		prompter.setItemType();
+		prompter.setMaxAmount();
+
+		System.out.println("");
+		System.out.println("****************************");
+		System.out.println("|||  LET THE GAME BEGIN  |||");
+		System.out.println("****************************");
+		System.out.println("");
 
 		// Create a jar object
-		Jar jar = new Jar(itemType, maxItemAmount);
-		System.out.println("The type of item in the jar is: " + jar.getItemName());
+		Jar jar = new Jar(prompter.getItemType(), prompter.getMaxItems());
+		System.out.println("The type of item in the jar is " + jar.getItemName());
+		System.out.println("The maximum number of " + jar.getItemName() + " in the jar is " + prompter.getMaxItems());
 
 		while (true)
 		{
-			int guessAmount = Integer.valueOf(console.readLine("How many " + jar.getItemName() + " do you think are in the jar? :" ));
+			prompter.setmGuessAmount();
 
-			boolean isTrue = jar.applyGuess(guessAmount);
+			boolean isTrue = jar.applyGuess(prompter.getmGuessAmount());
 
 			if(isTrue)
 			{
-				System.out.println("Correct");
+				System.out.println("Correct, you won : )");
+				System.out.println("You guessed " + jar.getGuessAttempts() + " times.");
 				System.exit(0);
 			}
 			else
 			{
-				System.out.println("Wrong");
+
+				// If the guess is less than the real amount, tell them to guess higher
+				if (prompter.getmGuessAmount() < jar.getmRealAmount())
+				{
+					System.out.println("Sorry wrong answer, try guess higher.");
+				}
+				else if(prompter.getmGuessAmount() < jar.getmRealAmount())
+				{
+					System.out.println("Sorry wrong answer, try guess lower");
+				}
 			}
 		}
 

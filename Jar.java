@@ -4,13 +4,14 @@ public class Jar
 	private String mItem;
 	private int mMaxAmount;
 	private int mRealAmount;
+	private int mGuessAttempts;
 
 	// Our constructor which we will init the type of items in the jar
 	public Jar(String item, int maxAmount)
 	{
 		mItem = item;
 		mMaxAmount = maxAmount;
-
+		// Generate a random number once we create the instance
 		mRealAmount = Utils.getRandomNumber(mMaxAmount);
 
 	}
@@ -22,7 +23,10 @@ public class Jar
 
 	public boolean applyGuess(int guess)
 	{
-		if(mRealAmount == guess)
+		// Increment guess counter;
+		mGuessAttempts++;
+
+		if(mRealAmount == guess && validateGuess(guess, mMaxAmount))
 		{
 			return true;
 		}
@@ -31,6 +35,28 @@ public class Jar
 			return false;
 		}
 
+	}
+
+	public int getmRealAmount()
+	{
+		return mRealAmount;
+	}
+
+	public boolean validateGuess(int guess, int max)
+	{
+		if(guess > 0 && guess <= max)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public int getGuessAttempts()
+	{
+		return mGuessAttempts;
 	}
 
 }
