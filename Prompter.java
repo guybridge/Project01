@@ -8,6 +8,7 @@ public class Prompter
     private String mItemType;
     private int mMaxItems;
     private int mGuessAmount;
+    private String mUserName;
 
 
     public void setItemType()
@@ -26,6 +27,17 @@ public class Prompter
     {
         Console console = System.console();
         mGuessAmount = Integer.valueOf(console.readLine("How many " + mItemType + " do you think are in the jar? :" ));
+    }
+
+    public void setUserName()
+    {
+        Console console = System.console();
+        mUserName = console.readLine("Please enter your name: ");
+    }
+
+    public String getUserName()
+    {
+        return mUserName;
     }
 
     public String getItemType()

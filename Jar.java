@@ -26,10 +26,16 @@ public class Jar
 		// Increment guess counter;
 		mGuessAttempts++;
 
+		if(guess > mMaxAmount)
+		{
+			throw new IllegalArgumentException("Error: guess is higher than the maximum");
+		}
+
 		if(mRealAmount == guess && validateGuess(guess, mMaxAmount))
 		{
 			return true;
 		}
+
 		else
 		{
 			return false;
