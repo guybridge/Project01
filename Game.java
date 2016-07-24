@@ -4,11 +4,15 @@ public class Game
 	public static void main(String[] args)
 	{
 
-		System.out.println("Welcome to the guess how many are in the jar game, please enter the following parameters.");
+		System.out.println("****************************");
+		System.out.println("|||  Administrator Setup |||");
+		System.out.println("****************************");
 
 		// Create a prompter object to get the data from the user
 		Prompter prompter = new Prompter();
+		// prompt the administrator for the item type
 		prompter.setItemType();
+		// prompt the administrator for the maximum amount
 		prompter.setMaxAmount();
 
 		System.out.println("");
@@ -25,10 +29,16 @@ public class Game
 		System.out.println("The type of item in the jar is " + jar.getItemName());
 		System.out.println("The maximum number of " + jar.getItemName() + " in the jar is " + prompter.getMaxItems());
 
+
+		// Loop forever util the user guesses correct
 		while (true)
 		{
-			prompter.setmGuessAmount();
+
 			boolean isCorrect = false;
+
+			// Get the guess from the user
+			prompter.setmGuessAmount();
+
 
 			try
 			{
@@ -45,7 +55,7 @@ public class Game
 				System.out.println("Correct, you won : )");
 				System.out.println("You guessed " + jar.getGuessAttempts() + " times.");
 				FileHelper helper = new FileHelper();
-				helper.save(String.valueOf(prompter.getUserName() + " : " + jar.getGuessAttempts()));
+				helper.save(String.valueOf(prompter.getUserName() + " : SCORE: " + jar.getGuessAttempts()));
 				helper.close();
 				System.exit(0);
 			}
